@@ -60,7 +60,7 @@ RandomPESEL = np.char.add(RandomPESEL,Z2)
 RandomPESEL = np.char.add(RandomPESEL,Z3)
 RandomPESEL = np.char.add(RandomPESEL,X4)
 print("DEBUG 6")
-
+RandomPESEL = np.unique(RandomPESEL)
 
 Digit1 = np.array(RandomPESEL.view('<U1').reshape(RandomPESEL.shape + (-1,))[..., 0], dtype=np.int)
 Digit2 = np.array(RandomPESEL.view('<U1').reshape(RandomPESEL.shape + (-1,))[..., 1], dtype=np.int)
@@ -117,7 +117,7 @@ RandomPESEL = np.unique(RandomPESEL)
 #print(CheckPESEL(RandomPESEL[100]))
 Vibration = np.array(Digit1 + Digit2 + Digit3 + Digit4 + Digit5 + Digit6 + Digit7 + Digit8 + Digit9 + Digit10)
 VibrationString = np.array(Vibration, dtype=np.str)
-print(VibrationString.shape)
+#print(VibrationString.shape)
 print("DEBUG 9")
 VibrationString1 = VibrationString[ np.char.str_len(VibrationString) == 1]
 VibrationString2 = VibrationString[ np.char.str_len(VibrationString) == 2]
@@ -130,8 +130,8 @@ VibDigit2 = np.array(VibrationString2.view('<U1').reshape(VibrationString2.shape
 Vibration2 = VibDigit1 + VibDigit2
 
 from matplotlib import pyplot as plt
-print("DEBUG 10")
-plt.hist(np.append(Vibration2, Vibration1)) 
+print("DEBUG 10, PESEL shape: ", RandomPESEL.shape)
+plt.hist(np.append(Vibration2, Vibration1)) # I know I should not use append with numpy lists.
 print("DEBUG 11")
 plt.xlabel("Vibration of PESEL")
 plt.ylabel("Number of PESELs")
